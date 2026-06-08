@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  # ── Fast feedback ─────────────────────────────────────────────
+  # Lint + typecheck + unit tests in a single small job. Gives a
+  # contributor a pass/fail signal within ~90s of pushing, while
+  # the heavier `verify` job (build + audit + production-audit
+  # script) continues in parallel below.
+  quick:
+    name: Lint + Typecheck + Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Tests
+        run: npm test
+
+  # ── Full release gate ─────────────────────────────────────────
+  # Runs the heavyweight checks: production build, `npm audit` at
+  # the high level (was moderate — too noisy for legitimate PRs),
+  # and the project-specific `audit:prod` script that verifies
+  # migrations, edge function configs, and required env vars line
+  # up. The quick job above effectively dedups lint/typecheck/test
+  # but we still include them via `verify` so this job can also be
+  # run standalone (e.g. for a release tag).
+  verify:
+    name: Full Verify
+    runs-on: ubuntu-latest
+    env:
+      VITE_SUPABASE_URL: https://example.supabase.co
+      VITE_SUPABASE_PUBLISHABLE_KEY: ci-placeholder-anon-key
+      VITE_ENABLE_PUBLIC_DEMO: "false"
+      VITE_ENABLE_DEMO_SEED: "false"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify release gate
+        run: npm run verify

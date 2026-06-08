@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rentflow-blue
+  labels:
+    app: rentflow
+    version: blue
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 5173
+    protocol: TCP
+    name: http
+  selector:
+    app: rentflow
+    version: blue
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rentflow-green
+  labels:
+    app: rentflow
+    version: green
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 5173
+    protocol: TCP
+    name: http
+  selector:
+    app: rentflow
+    version: green
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rentflow-active
+  labels:
+    app: rentflow
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    app: rentflow
+    active: "true"

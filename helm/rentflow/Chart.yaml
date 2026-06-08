@@ -1,0 +1,13 @@
+apiVersion: v2
+name: rentflow
+description: A Helm chart for RentFlow property management platform
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - rentflow
+  - property-management
+  - real-estate
+maintainers:
+  - name: RentFlow Team
+    email: team@rentflow.ink
