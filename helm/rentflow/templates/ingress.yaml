@@ -2,9 +2,9 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "rentflow.fullname" . }}-ingress
+  name: {{ include "calqulusrms.fullname" . }}-ingress
   labels:
-    {{- include "rentflow.labels" . | nindent 4 }}
+    {{- include "calqulusrms.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -35,7 +35,7 @@ spec:
             {{- end }}
             backend:
               service:
-                name: {{ include "rentflow.fullname" $ }}
+                name: {{ include "calqulusrms.fullname" $ }}
                 port:
                   number: {{ $.Values.service.port }}
           {{- end }}

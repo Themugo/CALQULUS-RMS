@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "rentflow.fullname" . }}-config
+  name: {{ include "calqulusrms.fullname" . }}-config
   labels:
-    {{- include "rentflow.labels" . | nindent 4 }}
+    {{- include "calqulusrms.labels" . | nindent 4 }}
 data:
   NODE_ENV: {{ .Values.config.NODE_ENV | quote }}
   LOG_LEVEL: {{ .Values.config.LOG_LEVEL | quote }}

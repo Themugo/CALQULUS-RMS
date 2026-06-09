@@ -1,14 +1,14 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "rentflow.name" -}}
+{{- define "calqulusrms.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Create a default fully qualified app name.
 */}}
-{{- define "rentflow.fullname" -}}
+{{- define "calqulusrms.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -24,16 +24,16 @@ Create a default fully qualified app name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "rentflow.chart" -}}
+{{- define "calqulusrms.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "rentflow.labels" -}}
-helm.sh/chart: {{ include "rentflow.chart" . }}
-{{ include "rentflow.selectorLabels" . }}
+{{- define "calqulusrms.labels" -}}
+helm.sh/chart: {{ include "calqulusrms.chart" . }}
+{{ include "calqulusrms.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -43,17 +43,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "rentflow.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "rentflow.name" . }}
+{{- define "calqulusrms.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "calqulusrms.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "rentflow.serviceAccountName" -}}
+{{- define "calqulusrms.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "rentflow.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "calqulusrms.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
