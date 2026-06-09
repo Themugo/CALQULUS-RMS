@@ -1,17 +1,17 @@
 -- ============================================================
--- RentFlow Demo Seed Data
+-- CALQULUS RMS Demo Seed Data
 -- Run this in Supabase SQL Editor to create a full demo environment.
 -- All demo users use password: Demo@2026
 -- ============================================================
 -- 
 -- DEMO ACCOUNTS:
---   Manager/Agency:  demo.manager@rentflow.ink     (/) 
---   Tenant 1:        demo.tenant1@rentflow.ink      (/portal)
---   Tenant 2:        demo.tenant2@rentflow.ink      (/portal)  
---   Orphan Tenant:   demo.tenant3@rentflow.ink      (/portal) - unlinked
---   Landlord:        demo.landlord@rentflow.ink     (/landlord/dashboard)
---   Agent/Submanager:demo.agent@rentflow.ink        (/) - submanager
---   Service Provider:demo.provider@rentflow.ink     (/services)
+--   Manager/Agency:  demo.manager@calqulusrms.com     (/) 
+--   Tenant 1:        demo.tenant1@calqulusrms.com      (/portal)
+--   Tenant 2:        demo.tenant2@calqulusrms.com      (/portal)  
+--   Orphan Tenant:   demo.tenant3@calqulusrms.com      (/portal) - unlinked
+--   Landlord:        demo.landlord@calqulusrms.com     (/landlord/dashboard)
+--   Agent/Submanager:demo.agent@calqulusrms.com        (/) - submanager
+--   Service Provider:demo.provider@calqulusrms.com     (/services)
 --
 -- RESET: Run the reset block at the bottom to wipe and re-run
 -- ============================================================
@@ -76,26 +76,26 @@ BEGIN
 -- ── Auth users (Supabase stores these in auth.users) ──────────
 -- NOTE: We cannot insert directly into auth.users via SQL safely.
 -- Instead, use the Supabase Dashboard > Authentication > Users to create:
---   demo.manager@rentflow.ink  / Demo@2026
---   demo.tenant1@rentflow.ink  / Demo@2026
---   demo.tenant2@rentflow.ink  / Demo@2026
---   demo.tenant3@rentflow.ink  / Demo@2026
---   demo.landlord@rentflow.ink / Demo@2026
---   demo.agent@rentflow.ink    / Demo@2026
---   demo.provider@rentflow.ink / Demo@2026
+--   demo.manager@calqulusrms.com  / Demo@2026
+--   demo.tenant1@calqulusrms.com  / Demo@2026
+--   demo.tenant2@calqulusrms.com  / Demo@2026
+--   demo.tenant3@calqulusrms.com  / Demo@2026
+--   demo.landlord@calqulusrms.com / Demo@2026
+--   demo.agent@calqulusrms.com    / Demo@2026
+--   demo.provider@calqulusrms.com / Demo@2026
 -- Then update the UUIDs at the top of this script with the actual IDs.
 --
 -- OR use the create_demo_users() function defined below.
 
 -- ── Profiles ──────────────────────────────────────────────────
 INSERT INTO public.profiles (id, full_name, email, phone) VALUES
-  (v_manager_id,   'James Kariuki',   'demo.manager@rentflow.ink',  '0712000001'),
-  (v_tenant1_uid,  'Grace Wanjiku',   'demo.tenant1@rentflow.ink',  '0712000002'),
-  (v_tenant2_uid,  'Brian Otieno',    'demo.tenant2@rentflow.ink',  '0712000003'),
-  (v_tenant3_uid,  'Amina Hassan',    'demo.tenant3@rentflow.ink',  '0712000004'),
-  (v_landlord_uid, 'Peter Mwangi',    'demo.landlord@rentflow.ink', '0712000005'),
-  (v_agent_uid,    'Fatuma Abubakar', 'demo.agent@rentflow.ink',    '0712000006'),
-  (v_provider_uid, 'Kamau Electricals','demo.provider@rentflow.ink','0712000007')
+  (v_manager_id,   'James Kariuki',   'demo.manager@calqulusrms.com',  '0712000001'),
+  (v_tenant1_uid,  'Grace Wanjiku',   'demo.tenant1@calqulusrms.com',  '0712000002'),
+  (v_tenant2_uid,  'Brian Otieno',    'demo.tenant2@calqulusrms.com',  '0712000003'),
+  (v_tenant3_uid,  'Amina Hassan',    'demo.tenant3@calqulusrms.com',  '0712000004'),
+  (v_landlord_uid, 'Peter Mwangi',    'demo.landlord@calqulusrms.com', '0712000005'),
+  (v_agent_uid,    'Fatuma Abubakar', 'demo.agent@calqulusrms.com',    '0712000006'),
+  (v_provider_uid, 'Kamau Electricals','demo.provider@calqulusrms.com','0712000007')
 ON CONFLICT (id) DO UPDATE SET
   full_name = EXCLUDED.full_name, email = EXCLUDED.email, phone = EXCLUDED.phone;
 
@@ -123,7 +123,7 @@ ON CONFLICT (manager_user_id) DO UPDATE SET
 INSERT INTO public.agencies (id, manager_id, name, email, phone, county, status, tier)
 VALUES (
   'aaaaaaaa-aaaa-aaaa-aaaa-000000000001'::uuid,
-  v_manager_id, 'Nairobi Realty Group', 'demo.manager@rentflow.ink',
+  v_manager_id, 'Nairobi Realty Group', 'demo.manager@calqulusrms.com',
   '0712000001', 'Nairobi', 'active', 'standard'
 ) ON CONFLICT (manager_id) DO NOTHING;
 
@@ -172,11 +172,11 @@ INSERT INTO public.tenants (
   id, manager_id, name, email, phone, property, unit, property_id, unit_id,
   monthly_rent, deposit_amount, deposit_balance, move_in_date, status
 ) VALUES
-  (v_ten1_id, v_manager_id, 'Grace Wanjiku', 'demo.tenant1@rentflow.ink', '0712000002',
+  (v_ten1_id, v_manager_id, 'Grace Wanjiku', 'demo.tenant1@calqulusrms.com', '0712000002',
    'Sunset Gardens', 'A3', v_prop1_id, v_unit_a3,
    8500, 17000, 17000, '2025-03-01', 'active'),
 
-  (v_ten2_id, v_manager_id, 'Brian Otieno', 'demo.tenant2@rentflow.ink', '0712000003',
+  (v_ten2_id, v_manager_id, 'Brian Otieno', 'demo.tenant2@calqulusrms.com', '0712000003',
    'Valley View Bungalows', 'B1', v_prop2_id, v_unit_b1,
    35000, 70000, 70000, '2024-09-15', 'active'),
 
@@ -332,7 +332,7 @@ VALUES (
 INSERT INTO public.landlord_invitations (
   manager_id, landlord_email, property_ids, status, created_at
 ) VALUES (
-  v_manager_id, 'demo.landlord@rentflow.ink',
+  v_manager_id, 'demo.landlord@calqulusrms.com',
   ARRAY[v_prop1_id::text, v_prop2_id::text], 'accepted', NOW() - INTERVAL '30 days'
 ) ON CONFLICT DO NOTHING;
 
@@ -357,11 +357,11 @@ INSERT INTO public.manager_invoices (
 
 RAISE NOTICE 'Demo data seeded successfully.';
 RAISE NOTICE 'Demo accounts (all password: Demo@2026):';
-RAISE NOTICE '  Manager/Agency:   demo.manager@rentflow.ink  → /';
-RAISE NOTICE '  Tenant 1 (Grace): demo.tenant1@rentflow.ink  → /portal';
-RAISE NOTICE '  Tenant 2 (Brian): demo.tenant2@rentflow.ink  → /portal';
-RAISE NOTICE '  Orphan (Amina):   demo.tenant3@rentflow.ink  → /portal';
-RAISE NOTICE '  Landlord:         demo.landlord@rentflow.ink → /landlord/dashboard';
-RAISE NOTICE '  Agent:            demo.agent@rentflow.ink    → /';
+RAISE NOTICE '  Manager/Agency:   demo.manager@calqulusrms.com  → /';
+RAISE NOTICE '  Tenant 1 (Grace): demo.tenant1@calqulusrms.com  → /portal';
+RAISE NOTICE '  Tenant 2 (Brian): demo.tenant2@calqulusrms.com  → /portal';
+RAISE NOTICE '  Orphan (Amina):   demo.tenant3@calqulusrms.com  → /portal';
+RAISE NOTICE '  Landlord:         demo.landlord@calqulusrms.com → /landlord/dashboard';
+RAISE NOTICE '  Agent:            demo.agent@calqulusrms.com    → /';
 
 END $$;

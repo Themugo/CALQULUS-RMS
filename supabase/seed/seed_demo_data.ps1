@@ -41,7 +41,7 @@ function Run-Sql {
     }
 }
 
-Write-Host "=== RentFlow Demo Data Seed ===" -ForegroundColor Cyan
+Write-Host "=== CALQULUS RMS Demo Data Seed ===" -ForegroundColor Cyan
 Write-Host "Project: $ProjectRef"
 Write-Host ""
 
@@ -52,25 +52,25 @@ Write-Host "[1/19] Inserting profiles..." -ForegroundColor Yellow
 Run-Sql -Sql @"
 INSERT INTO public.profiles (id, full_name, email, phone)
 SELECT id, 'Demo Manager', email, '+254700000001'
-FROM auth.users WHERE email = 'demo.manager@rentflow.ink'
+FROM auth.users WHERE email = 'demo.manager@calqulusrms.com'
 UNION ALL
 SELECT id, 'Demo Landlord', email, '+254700000002'
-FROM auth.users WHERE email = 'demo.landlord@rentflow.ink'
+FROM auth.users WHERE email = 'demo.landlord@calqulusrms.com'
 UNION ALL
 SELECT id, 'Demo Agent', email, '+254700000003'
-FROM auth.users WHERE email = 'demo.agent@rentflow.ink'
+FROM auth.users WHERE email = 'demo.agent@calqulusrms.com'
 UNION ALL
 SELECT id, 'Demo Tenant 1', email, '+254700000004'
-FROM auth.users WHERE email = 'demo.tenant1@rentflow.ink'
+FROM auth.users WHERE email = 'demo.tenant1@calqulusrms.com'
 UNION ALL
 SELECT id, 'Demo Tenant 2', email, '+254700000005'
-FROM auth.users WHERE email = 'demo.tenant2@rentflow.ink'
+FROM auth.users WHERE email = 'demo.tenant2@calqulusrms.com'
 UNION ALL
 SELECT id, 'Demo Tenant 3', email, '+254700000006'
-FROM auth.users WHERE email = 'demo.tenant3@rentflow.ink'
+FROM auth.users WHERE email = 'demo.tenant3@calqulusrms.com'
 UNION ALL
 SELECT id, 'Demo Provider', email, '+254700000007'
-FROM auth.users WHERE email = 'demo.provider@rentflow.ink'
+FROM auth.users WHERE email = 'demo.provider@calqulusrms.com'
 ON CONFLICT (id) DO NOTHING;
 "@
 
@@ -81,25 +81,25 @@ Write-Host "[2/19] Inserting user_roles..." -ForegroundColor Yellow
 Run-Sql -Sql @"
 INSERT INTO public.user_roles (id, user_id, role)
 SELECT 'aaaaaaa-bbbb-0001-0001-aaaaaaaaaaaa', id, 'manager'
-FROM auth.users WHERE email = 'demo.manager@rentflow.ink'
+FROM auth.users WHERE email = 'demo.manager@calqulusrms.com'
 UNION ALL
 SELECT 'aaaaaaa-bbbb-0002-0002-aaaaaaaaaaaa', id, 'landlord'
-FROM auth.users WHERE email = 'demo.landlord@rentflow.ink'
+FROM auth.users WHERE email = 'demo.landlord@calqulusrms.com'
 UNION ALL
 SELECT 'aaaaaaa-bbbb-0003-0003-aaaaaaaaaaaa', id, 'submanager'
-FROM auth.users WHERE email = 'demo.agent@rentflow.ink'
+FROM auth.users WHERE email = 'demo.agent@calqulusrms.com'
 UNION ALL
 SELECT 'aaaaaaa-bbbb-0004-0004-aaaaaaaaaaaa', id, 'tenant'
-FROM auth.users WHERE email = 'demo.tenant1@rentflow.ink'
+FROM auth.users WHERE email = 'demo.tenant1@calqulusrms.com'
 UNION ALL
 SELECT 'aaaaaaa-bbbb-0005-0005-aaaaaaaaaaaa', id, 'tenant'
-FROM auth.users WHERE email = 'demo.tenant2@rentflow.ink'
+FROM auth.users WHERE email = 'demo.tenant2@calqulusrms.com'
 UNION ALL
 SELECT 'aaaaaaa-bbbb-0006-0006-aaaaaaaaaaaa', id, 'tenant'
-FROM auth.users WHERE email = 'demo.tenant3@rentflow.ink'
+FROM auth.users WHERE email = 'demo.tenant3@calqulusrms.com'
 UNION ALL
 SELECT 'aaaaaaa-bbbb-0007-0007-aaaaaaaaaaaa', id, 'tenant'
-FROM auth.users WHERE email = 'demo.provider@rentflow.ink'
+FROM auth.users WHERE email = 'demo.provider@calqulusrms.com'
 ON CONFLICT (id) DO NOTHING;
 "@
 
@@ -111,10 +111,10 @@ Run-Sql -Sql @"
 INSERT INTO public.agencies (id, name, address, phone, email)
 VALUES (
     '99999999-0001-0001-0001-999999999999',
-    'RentFlow Demo Agency',
+    'CALQULUS RMS Demo Agency',
     '123 Demo Street, Nairobi',
     '+254700000100',
-    'info@rentflowdemo.com'
+    'info@calqulusrmsdemo.com'
 )
 ON CONFLICT (id) DO NOTHING;
 "@
@@ -132,7 +132,7 @@ SELECT
     'General Manager',
     '+254700000001'
 FROM auth.users au
-WHERE au.email = 'demo.manager@rentflow.ink'
+WHERE au.email = 'demo.manager@calqulusrms.com'
 ON CONFLICT (id) DO NOTHING;
 "@
 
@@ -148,7 +148,7 @@ SELECT
     mgr.id,
     true, true, true, false
 FROM auth.users sub, auth.users mgr
-WHERE sub.email = 'demo.agent@rentflow.ink' AND mgr.email = 'demo.manager@rentflow.ink'
+WHERE sub.email = 'demo.agent@calqulusrms.com' AND mgr.email = 'demo.manager@calqulusrms.com'
 ON CONFLICT (id) DO NOTHING;
 "@
 
@@ -166,7 +166,7 @@ SELECT
     'Nairobi County',
     au.id,
     '99999999-0001-0001-0001-999999999999'
-FROM auth.users au WHERE au.email = 'demo.manager@rentflow.ink'
+FROM auth.users au WHERE au.email = 'demo.manager@calqulusrms.com'
 UNION ALL
 SELECT
     'aaaaaaaa-0002-0002-0002-aaaaaaaaaaaa',
@@ -176,7 +176,7 @@ SELECT
     'Mombasa County',
     au.id,
     '99999999-0001-0001-0001-999999999999'
-FROM auth.users au WHERE au.email = 'demo.manager@rentflow.ink'
+FROM auth.users au WHERE au.email = 'demo.manager@calqulusrms.com'
 UNION ALL
 SELECT
     'aaaaaaaa-0003-0003-0003-aaaaaaaaaaaa',
@@ -186,7 +186,7 @@ SELECT
     'Nairobi County',
     au.id,
     '99999999-0001-0001-0001-999999999999'
-FROM auth.users au WHERE au.email = 'demo.manager@rentflow.ink'
+FROM auth.users au WHERE au.email = 'demo.manager@calqulusrms.com'
 ON CONFLICT (id) DO NOTHING;
 "@
 
@@ -224,7 +224,7 @@ SELECT
     25000,
     50000,
     'active'
-FROM auth.users au WHERE au.email = 'demo.tenant1@rentflow.ink'
+FROM auth.users au WHERE au.email = 'demo.tenant1@calqulusrms.com'
 UNION ALL
 SELECT
     'cccccccc-0002-0002-0002-cccccccccccc',
@@ -235,7 +235,7 @@ SELECT
     22000,
     44000,
     'active'
-FROM auth.users au WHERE au.email = 'demo.tenant2@rentflow.ink'
+FROM auth.users au WHERE au.email = 'demo.tenant2@calqulusrms.com'
 UNION ALL
 SELECT
     'cccccccc-0003-0003-0003-cccccccccccc',
@@ -246,7 +246,7 @@ SELECT
     20000,
     40000,
     'active'
-FROM auth.users au WHERE au.email = 'demo.tenant3@rentflow.ink'
+FROM auth.users au WHERE au.email = 'demo.tenant3@calqulusrms.com'
 ON CONFLICT (id) DO NOTHING;
 "@
 
@@ -308,7 +308,7 @@ VALUES
         'cccccccc-0001-0001-0001-cccccccccccc',
         'Sunset Towers',
         'Demo Tenant 1',
-        'demo.tenant1@rentflow.ink',
+        'demo.tenant1@calqulusrms.com',
         'A101',
         'Leaking kitchen faucet',
         'pending',
@@ -319,7 +319,7 @@ VALUES
         'cccccccc-0002-0002-0002-cccccccccccc',
         'Green Acres Estate',
         'Demo Tenant 2',
-        'demo.tenant2@rentflow.ink',
+        'demo.tenant2@calqulusrms.com',
         'B201',
         'Broken water heater',
         'in_progress',
@@ -337,11 +337,11 @@ INSERT INTO public.messages (id, sender_id, receiver_id, subject, body, is_read)
 SELECT
     '11111111-0001-0001-0001-111111111111',
     s.id, r.id,
-    'Welcome to RentFlow',
+    'Welcome to CALQULUS RMS',
     'Your tenancy has been created. Please review your lease details.',
     false
 FROM auth.users s, auth.users r
-WHERE s.email = 'demo.manager@rentflow.ink' AND r.email = 'demo.tenant1@rentflow.ink'
+WHERE s.email = 'demo.manager@calqulusrms.com' AND r.email = 'demo.tenant1@calqulusrms.com'
 UNION ALL
 SELECT
     '11111111-0002-0002-0002-111111111111',
@@ -350,7 +350,7 @@ SELECT
     'I have a leaking faucet in the kitchen that needs attention.',
     false
 FROM auth.users s, auth.users r
-WHERE s.email = 'demo.tenant1@rentflow.ink' AND r.email = 'demo.manager@rentflow.ink'
+WHERE s.email = 'demo.tenant1@calqulusrms.com' AND r.email = 'demo.manager@calqulusrms.com'
 UNION ALL
 SELECT
     '11111111-0003-0003-0003-111111111111',
@@ -359,7 +359,7 @@ SELECT
     'Your rent of KES 22,000 is due on 1st March 2025.',
     false
 FROM auth.users s, auth.users r
-WHERE s.email = 'demo.manager@rentflow.ink' AND r.email = 'demo.tenant2@rentflow.ink'
+WHERE s.email = 'demo.manager@calqulusrms.com' AND r.email = 'demo.tenant2@calqulusrms.com'
 UNION ALL
 SELECT
     '11111111-0004-0004-0004-111111111111',
@@ -368,7 +368,7 @@ SELECT
     'I have made the payment via M-Pesa. Please confirm.',
     false
 FROM auth.users s, auth.users r
-WHERE s.email = 'demo.tenant2@rentflow.ink' AND r.email = 'demo.manager@rentflow.ink'
+WHERE s.email = 'demo.tenant2@calqulusrms.com' AND r.email = 'demo.manager@calqulusrms.com'
 ON CONFLICT (id) DO NOTHING;
 "@
 
@@ -385,7 +385,7 @@ SELECT
     'Demo Tenant 1 has registered and been assigned to Sunset Towers.',
     'info',
     false
-FROM auth.users au WHERE au.email = 'demo.manager@rentflow.ink'
+FROM auth.users au WHERE au.email = 'demo.manager@calqulusrms.com'
 UNION ALL
 SELECT
     '22222222-0002-0002-0002-222222222222',
@@ -394,7 +394,7 @@ SELECT
     'Your payment of KES 25,000 for January rent has been received.',
     'success',
     false
-FROM auth.users au WHERE au.email = 'demo.tenant1@rentflow.ink'
+FROM auth.users au WHERE au.email = 'demo.tenant1@calqulusrms.com'
 UNION ALL
 SELECT
     '22222222-0003-0003-0003-222222222222',
@@ -403,7 +403,7 @@ SELECT
     'Your maintenance request for the water heater has been marked as in progress.',
     'warning',
     false
-FROM auth.users au WHERE au.email = 'demo.tenant2@rentflow.ink'
+FROM auth.users au WHERE au.email = 'demo.tenant2@calqulusrms.com'
 ON CONFLICT (id) DO NOTHING;
 "@
 
@@ -419,7 +419,7 @@ SELECT
     'Quick Fix Services',
     '+254700000007',
     'Handyman'
-FROM auth.users au WHERE au.email = 'demo.provider@rentflow.ink'
+FROM auth.users au WHERE au.email = 'demo.provider@calqulusrms.com'
 ON CONFLICT (id) DO NOTHING;
 "@
 
@@ -496,7 +496,7 @@ SELECT
     'pk_demo_passkey',
     '174379',
     false
-FROM auth.users au WHERE au.email = 'demo.manager@rentflow.ink'
+FROM auth.users au WHERE au.email = 'demo.manager@calqulusrms.com'
 ON CONFLICT (id) DO NOTHING;
 "@
 
@@ -512,7 +512,7 @@ SELECT
     5000,
     'Monthly management fee - January 2025',
     'pending'
-FROM auth.users au WHERE au.email = 'demo.manager@rentflow.ink'
+FROM auth.users au WHERE au.email = 'demo.manager@calqulusrms.com'
 ON CONFLICT (id) DO NOTHING;
 "@
 
