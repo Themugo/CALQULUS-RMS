@@ -1,8 +1,8 @@
-# RentFlow Staging Environment Setup Guide
+# CALQULUS RMS Staging Environment Setup Guide
 
 ## Overview
 
-This guide covers setting up a staging environment for RentFlow to test changes before deploying to production. Staging environments are essential for:
+This guide covers setting up a staging environment for CALQULUS RMS to test changes before deploying to production. Staging environments are essential for:
 - Testing new features
 - Validating database migrations
 - Performance testing
@@ -12,8 +12,8 @@ This guide covers setting up a staging environment for RentFlow to test changes 
 ## Architecture
 
 ```
-Production:  app.rentflow.ink → Supabase Production
-Staging:     staging.rentflow.ink → Supabase Staging
+Production:  app.calqulusrms.com → Supabase Production
+Staging:     staging.calqulusrms.com → Supabase Staging
 Development: localhost:5173 → Supabase Local/Development
 ```
 
@@ -23,7 +23,7 @@ Development: localhost:5173 → Supabase Local/Development
 
 1. Go to [Vercel Dashboard](https://vercel.com/dashboard)
 2. Click "Add New Project"
-3. Import the RentFlow GitHub repository
+3. Import the CALQULUS RMS GitHub repository
 4. Name it: `rentflow-staging`
 5. Framework: Vite (auto-detected)
 
@@ -55,7 +55,7 @@ VITE_AUTH_TIMEOUT_MS=15000
 #### Custom Domain
 
 1. Go to Settings → Domains
-2. Add domain: `staging.rentflow.ink`
+2. Add domain: `staging.calqulusrms.com`
 3. Configure DNS:
    ```
    CNAME staging → cname.vercel-dns.com
@@ -108,8 +108,8 @@ Add staging-specific secrets:
 ```bash
 # Email (use staging email service)
 RESEND_API_KEY=your-staging-resend-key
-RESEND_FROM_DOMAIN=staging.rentflow.ink
-RESEND_FROM_EMAIL=RentFlow Staging <staging@rentflow.ink>
+RESEND_FROM_DOMAIN=staging.calqulusrms.com
+RESEND_FROM_EMAIL=CALQULUS RMS Staging <staging@calqulusrms.com>
 
 # M-Pesa (use sandbox)
 MPESA_CONSUMER_KEY=your-test-consumer-key
@@ -125,8 +125,8 @@ TWILIO_AUTH_TOKEN=your-test-token
 TWILIO_FROM_NUMBER=+15550000000
 
 # Site URLs
-SITE_URL=https://staging.rentflow.ink
-APP_URL=https://staging.rentflow.ink
+SITE_URL=https://staging.calqulusrms.com
+APP_URL=https://staging.calqulusrms.com
 
 # Demo Secret
 DEMO_SECRET=your-staging-demo-secret
@@ -170,7 +170,7 @@ Run SQL in Supabase SQL Editor:
 INSERT INTO auth.users (id, email, encrypted_password, email_confirmed_at)
 VALUES (
   gen_random_uuid(),
-  'staging-manager@rentflow.ink',
+  'staging-manager@calqulusrms.com',
   crypt('Test@1234', gen_salt('bf')),
   now()
 );
@@ -179,13 +179,13 @@ VALUES (
 INSERT INTO public.user_roles (user_id, role, approval_status)
 SELECT id, 'manager', 'approved'
 FROM auth.users
-WHERE email = 'staging-manager@rentflow.ink';
+WHERE email = 'staging-manager@calqulusrms.com';
 
 -- Create test tenant
 INSERT INTO auth.users (id, email, encrypted_password, email_confirmed_at)
 VALUES (
   gen_random_uuid(),
-  'staging-tenant@rentflow.ink',
+  'staging-tenant@calqulusrms.com',
   crypt('Test@1234', gen_salt('bf')),
   now()
 );
@@ -194,7 +194,7 @@ VALUES (
 INSERT INTO public.user_roles (user_id, role, approval_status)
 SELECT id, 'tenant', 'approved'
 FROM auth.users
-WHERE email = 'staging-tenant@rentflow.ink';
+WHERE email = 'staging-tenant@calqulusrms.com';
 ```
 
 ## Git Workflow
@@ -269,9 +269,9 @@ Before promoting to production:
 ### Test Accounts
 
 Staging-specific test accounts:
-- Manager: staging-manager@rentflow.ink / Test@1234
-- Tenant: staging-tenant@rentflow.ink / Test@1234
-- Webhost: staging-webhost@rentflow.ink / Test@1234
+- Manager: staging-manager@calqulusrms.com / Test@1234
+- Tenant: staging-tenant@calqulusrms.com / Test@1234
+- Webhost: staging-webhost@calqulusrms.com / Test@1234
 
 ### Payment Testing
 

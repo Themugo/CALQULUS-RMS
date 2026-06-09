@@ -6,9 +6,9 @@ Realign all dashboards to the new role architecture (Webhost, Manager, Landlord,
 ## Constraints & Preferences
 - Local folder: `C:\Users\hp\Desktop\Rentflow-FINAL-main`
 - Repo: `https://github.com/Themugo/Rentflow-FINAL.git` — auto-deploys Vercel from `main`
-- Production: `https://app.rentflow.ink` / Supabase `aelzsqxllkypbzslxyju.supabase.co`
-- Test accounts: `jimmythemugo@gmail.com` (manager), `kamauwamakena@gmail.com` (tenant), `mugo.james27@gmail.com` (webhost) — all pw `RentFlow@2026!`
-- Demo accounts: `demo.manager@rentflow.ink`, `demo.landlord@rentflow.ink` — pw `Demo@2026`
+- Production: `https://app.calqulusrms.com` / Supabase `aelzsqxllkypbzslxyju.supabase.co`
+- Test accounts: `jimmythemugo@gmail.com` (manager), `kamauwamakena@gmail.com` (tenant), `mugo.james27@gmail.com` (webhost) — all pw `CALQULUS RMS@2026!`
+- Demo accounts: `demo.manager@calqulusrms.com`, `demo.landlord@calqulusrms.com` — pw `Demo@2026`
 - Edge functions deployed: `send-tenant-invitation`, `create-tenant-account`, `notify-manager-tenant-signup`
 - 45 migrations in `supabase/migrations/`
 
@@ -56,13 +56,13 @@ Realign all dashboards to the new role architecture (Webhost, Manager, Landlord,
 - 8 outdated major deps remain: `tailwindcss 3→4`, `date-fns 3→4`, `react-day-picker 8→10`, `recharts 2→3`, `react-resizable-panels 2→4`, `eslint 9→10` + plugins.
 
 ## Key Accounts (test)
-- Manager: `jimmythemugo@gmail.com` / `RentFlow@2026!`
-- Tenant: `kamauwamakena@gmail.com` / `RentFlow@2026!`
-- Webhost: `mugo.james27@gmail.com` / `RentFlow@2026!`
-- Platform Business: `themugo@rentflow.ink` (needs seeding)
-- Platform Admin: `admin@rentflow.ink` (needs seeding)
-- Demo Manager: `demo.manager@rentflow.ink` / `Demo@2026`
-- Demo Landlord: `demo.landlord@rentflow.ink` / `Demo@2026`
+- Manager: `jimmythemugo@gmail.com` / `CALQULUS RMS@2026!`
+- Tenant: `kamauwamakena@gmail.com` / `CALQULUS RMS@2026!`
+- Webhost: `mugo.james27@gmail.com` / `CALQULUS RMS@2026!`
+- Platform Business: `themugo@calqulusrms.com` (needs seeding)
+- Platform Admin: `admin@calqulusrms.com` (needs seeding)
+- Demo Manager: `demo.manager@calqulusrms.com` / `Demo@2026`
+- Demo Landlord: `demo.landlord@calqulusrms.com` / `Demo@2026`
 
 ## Supabase
 - URL: `https://aelzsqxllkypbzslxyju.supabase.co`
@@ -72,8 +72,8 @@ Realign all dashboards to the new role architecture (Webhost, Manager, Landlord,
 ## Platform Admin Hierarchy
 - `platform_admins` table: 3 tiers — owner (`is_immutable`), business, admin
 - Owner: `mugo.james27@gmail.com` — cannot be suspended/deleted
-- Business: `themugo@rentflow.ink` — can be suspended by Owner only, can create admins
-- Admin: `admin@rentflow.ink` — can be suspended by Owner or Business
+- Business: `themugo@calqulusrms.com` — can be suspended by Owner only, can create admins
+- Admin: `admin@calqulusrms.com` — can be suspended by Owner or Business
 - Suspension rules enforced via DB trigger + application-level checks
 - UI: Webhost Dashboard → "Platform Admins" tab (owner/business only)
 
