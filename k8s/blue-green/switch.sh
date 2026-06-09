@@ -5,10 +5,10 @@
 
 set -e
 
-NAMESPACE="rentflow"
-BLUE_DEPLOYMENT="rentflow-blue"
-GREEN_DEPLOYMENT="rentflow-green"
-ACTIVE_SERVICE="rentflow-active"
+NAMESPACE="calqulusrms"
+BLUE_DEPLOYMENT="calqulusrms-blue"
+GREEN_DEPLOYMENT="calqulusrms-green"
+ACTIVE_SERVICE="calqulusrms-active"
 
 # Function to switch to blue deployment
 switch_to_blue() {

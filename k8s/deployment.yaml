@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rentflow
+  name: calqulusrms
   labels:
-    app: rentflow
+    app: calqulusrms
     version: v1
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: rentflow
+      app: calqulusrms
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -18,12 +18,12 @@ spec:
   template:
     metadata:
       labels:
-        app: rentflow
+        app: calqulusrms
         version: v1
     spec:
       containers:
-      - name: rentflow
-        image: rentflow:latest
+      - name: calqulusrms
+        image: calqulusrms:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 5173
@@ -35,17 +35,17 @@ spec:
         - name: VITE_SUPABASE_URL
           valueFrom:
             secretKeyRef:
-              name: rentflow-secrets
+              name: calqulusrms-secrets
               key: supabase-url
         - name: VITE_SUPABASE_PUBLISHABLE_KEY
           valueFrom:
             secretKeyRef:
-              name: rentflow-secrets
+              name: calqulusrms-secrets
               key: supabase-publishable-key
         - name: VITE_DEMO_SEED_SECRET
           valueFrom:
             secretKeyRef:
-              name: rentflow-secrets
+              name: calqulusrms-secrets
               key: demo-seed-secret
         resources:
           requests:
@@ -88,5 +88,5 @@ spec:
                 - key: app
                   operator: In
                   values:
-                  - rentflow
+                  - calqulusrms
               topologyKey: kubernetes.io/hostname

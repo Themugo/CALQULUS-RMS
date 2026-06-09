@@ -5,12 +5,12 @@
 
 set -e
 
-NAMESPACE="rentflow"
-CANARY_DEPLOYMENT="rentflow-canary"
-STABLE_DEPLOYMENT="rentflow"
-CANARY_SERVICE="rentflow-canary"
-STABLE_SERVICE="rentflow"
-CANARY_INGRESS="rentflow-canary-ingress"
+NAMESPACE="calqulusrms"
+CANARY_DEPLOYMENT="calqulusrms-canary"
+STABLE_DEPLOYMENT="calqulusrms"
+CANARY_SERVICE="calqulusrms-canary"
+STABLE_SERVICE="calqulusrms"
+CANARY_INGRESS="calqulusrms-canary-ingress"
 
 # Function to deploy canary
 deploy_canary() {
@@ -50,7 +50,7 @@ promote_canary() {
     
     # Update stable deployment with canary image
     kubectl set image deployment $STABLE_DEPLOYMENT -n $NAMESPACE \
-        rentflow=$CANARY_IMAGE
+        calqulusrms=$CANARY_IMAGE
     
     # Wait for stable deployment to be ready
     kubectl rollout status deployment $STABLE_DEPLOYMENT -n $NAMESPACE --timeout=5m

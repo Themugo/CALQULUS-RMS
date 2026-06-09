@@ -1,11 +1,11 @@
-apiVersion: rentflow.io/v1alpha1
+apiVersion: calqulusrms.io/v1alpha1
 kind: RentFlow
 metadata:
-  name: rentflow-production
-  namespace: rentflow
+  name: calqulusrms-production
+  namespace: calqulusrms
 spec:
   replicas: 3
-  image: rentflow:latest
+  image: calqulusrms:latest
   resources:
     requests:
       memory: "256Mi"
