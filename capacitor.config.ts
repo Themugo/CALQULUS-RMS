@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 /**
- * Capacitor config for RentFlow PWA / native app wrapper.
+ * Capacitor config for CALQULUS RMS PWA / native app wrapper.
  * The biometricService uses Capacitor.isNativePlatform() to gracefully
  * fall back on web — no native build is required for the web app.
  *
@@ -14,11 +14,11 @@ import type { CapacitorConfig } from '@capacitor/cli';
  *   3. Run: npx cap add android && npx cap add ios
  */
 const config: CapacitorConfig = {
-  appId: 'ink.rentflow.app',
-  appName: 'RentFlow',
+  appId: 'com.calqulusrms.app',
+  appName: 'CALQULUS RMS',
   webDir: 'dist',
   server: {
-    url: process.env.CAPACITOR_SERVER_URL || 'https://rentflow.ink',
+    url: process.env.CAPACITOR_SERVER_URL || 'https://calqulusrms.com',
     cleartext: false,
   },
 };
