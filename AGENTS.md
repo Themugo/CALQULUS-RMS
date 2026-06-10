@@ -5,7 +5,7 @@ Realign all dashboards to the new role architecture (Webhost, Manager, Landlord,
 
 ## Constraints & Preferences
 - Local folder: `C:\Users\hp\Desktop\Rentflow-FINAL-main`
-- Repo: `https://github.com/Themugo/Rentflow-FINAL.git` — auto-deploys Vercel from `main`
+- Repo: `https://github.com/Themugo/CALQULUS-RMS.git` — auto-deploys Vercel from `main`
 - Production: `https://app.calqulusrms.com` / Supabase `aelzsqxllkypbzslxyju.supabase.co`
 - Test accounts: `jimmythemugo@gmail.com` (manager), `kamauwamakena@gmail.com` (tenant), `mugo.james27@gmail.com` (webhost) — all pw `CALQULUS RMS@2026!`
 - Demo accounts: `demo.manager@calqulusrms.com`, `demo.landlord@calqulusrms.com` — pw `Demo@2026`
@@ -30,7 +30,7 @@ Realign all dashboards to the new role architecture (Webhost, Manager, Landlord,
 ## Progress
 
 ### Done
-- **Sidebar restructured to match `rentflow_full_platform_v2.html` mockup**: Manager nav groups now show Overview (Dashboard), Tenants (Leases, Tenants, Invites, Vacation Notices), Billing (Billing, Water Billing, Statements), Operations (Maintenance, Reports), Account (Settings). Removed Properties group, Communication group, Finance extras, Services.
+- **Sidebar restructured to match `calqulus_full_platform_v2.html` mockup**: Manager nav groups now show Overview (Dashboard), Tenants (Leases, Tenants, Invites, Vacation Notices), Billing (Billing, Water Billing, Statements), Operations (Maintenance, Reports), Account (Settings). Removed Properties group, Communication group, Finance extras, Services.
 - **Water Billing standalone page** (`/water-billing`): New property selector + WaterBillingManager integration. Route added for manager, submanager, and agency roles.
 - **Invites page** (`/invites`): Wraps InvitationTracker with InviteTenantDialog trigger. Route added for manager, submanager, and agency roles.
 - **Statements page** (`/statements`): Wraps PropertyStatementTab with property selector. Route added for manager, submanager, and agency roles.
@@ -188,15 +188,15 @@ Tier 3: Tenants
 - **Payment flows**: Manager operates/landlord collects OR agency collects(pays landlord after commission) OR landlord self-managed — configured via `property_landlords.operating_model`.
 
 ## Mockup References
-- `rentflow_authority_structure.html`: defines hard role hierarchy tiers, access URL map, firewall rules.
+- `calqulus_authority_structure.html`: defines hard role hierarchy tiers, access URL map, firewall rules.
 - `dashboard_previews.html`: shows Webhost sidebar (Overview, Managers, Properties, Billing, Tiers, Contracts, Security, Error Logs), Landlord property cards with occupancy bars, Tenant hero balance card.
-- `rentflow_full_platform_v2.html`: exact Manager sidebar layout (Dashboard, Leases, Tenants, Invites, Vacation Notices, Billing, Water Billing, Statements, Maintenance, Reports, Settings) + Tenant portal nav (Home, Pay Rent, Maintenance, Documents, Vacation Notice).
+- `calqulus_full_platform_v2.html`: exact Manager sidebar layout (Dashboard, Leases, Tenants, Invites, Vacation Notices, Billing, Water Billing, Statements, Maintenance, Reports, Settings) + Tenant portal nav (Home, Pay Rent, Maintenance, Documents, Vacation Notice).
 
 ## Next Steps
 1. Complete Agency portal pages: properties, tenants, leases, billing, maintenance, landlords, reports, settings under `/agency/*` routes.
 2. Rebuild `WebhostDashboard.tsx`: remove tenant references, add Unlinked Landlords tab, align tabs to mockup (Overview, Managers, Properties, Billing, Tiers, Contracts, Security, Error Logs).
 3. Rebuild `LandlordDashboard.tsx`: replace raw tenant payment table with property cards showing occupancy bars, revenue share %, "Your share" per property. No tenant PII at all.
-4. Trim manager sidebar to match `rentflow_full_platform_v2.html`: Dashboard, Leases, Tenants, Invites, Vacation Notices, Billing, Water Billing, Statements, Maintenance, Reports, Settings.
+4. Trim manager sidebar to match `calqulus_full_platform_v2.html`: Dashboard, Leases, Tenants, Invites, Vacation Notices, Billing, Water Billing, Statements, Maintenance, Reports, Settings.
 5. Remove `can_manage_tenants` from `admin_permissions` table and `WebhostPermissions` type.
 6. Block all `/tenants`, `/portal` routes for webhost role in route config.
 7. Add `manager_id IS NULL` filter to webhost's landlord queries.
@@ -207,7 +207,7 @@ Tier 3: Tenants
 ## Relevant Files
 - `src/features/webhost/pages/WebhostDashboard.tsx`: needs full rebuild — remove tenants, add unlinked landlords, match sidebar mockup.
 - `src/features/landlord/pages/LandlordDashboard.tsx`: rebuild to show property cards with occupancy/revenue bars, no tenant PII.
-- `src/shared/components/layout/Sidebar.tsx`: trim manager nav to match `rentflow_full_platform_v2.html`.
+- `src/shared/components/layout/Sidebar.tsx`: trim manager nav to match `calqulus_full_platform_v2.html`.
 - `src/app/routes.ts`: block `/tenants` and `/portal` for webhost role.
 - `src/features/properties/pages/Properties.tsx`: agency code already removed; manager property grid is flat.
 - `src/features/landlord/pages/ManagerLandlords.tsx`: newly created — manage landlord links per property.
