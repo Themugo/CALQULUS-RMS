@@ -47,13 +47,13 @@ Realign all dashboards to the new role architecture (Webhost, Manager, Landlord,
 - **Water billing system**: Meter readings per unit, auto-calc charge × rate, "Bill" action.
 - **Reports**: Financial/occupancy/maintenance tabs with Chart.js revenue bars/doughnut occupancy chart.
 
-### In Progress
-- **Webhost dashboard overhaul**: Remove tenant metrics from Overview stats, add Unlinked Landlords tab filtered by `manager_id IS NULL`, align sidebar to `dashboard_previews.html` (Overview, Managers, Properties, Billing, Tiers, Contracts, Security, Error Logs). Current tab list has several extras (Oversight, Billing Blocks, Webhost Admins, Platform Admins, Activity, Property Types, Payment Settings, Dead-Letter).
-- **Tenant dashboard hero card**: Balance card with overdue/pending/clear states from `dashboard_previews.html` mockup.
+### Done
+- **Webhost dashboard overhaul**: ✅ Completed - Removed extra tabs (Oversight, Compliance, Platform Admins, Billing Blocks) to align sidebar to `dashboard_previews.html` (Overview, Managers, Properties, Billing, Tiers, Contracts, Security, Error Logs). Unlinked Landlords tab already exists (filtered by `manager_id IS NULL`). Webhost Overview already has no tenant metrics (only manager/property/platform billing stats).
+- **Tenant dashboard hero card**: ✅ Completed - TenantBalanceSummary already implements balance card with overdue/pending/clear states based on balance_due and isFullyPaid logic.
 
 ### Blocked
 - New DB migrations (`20260530000000` through `20260601000001`) not yet applied — need Supabase DB password from Project Dashboard → Settings → Database.
-- 8 outdated major deps remain: `tailwindcss 3→4`, `date-fns 3→4`, `react-day-picker 8→10`, `recharts 2→3`, `react-resizable-panels 2→4`, `eslint 9→10` + plugins.
+- All 8 outdated major deps already upgraded: `tailwindcss 4.3.0`, `date-fns 4.4.0`, `react-day-picker 10.0.1`, `recharts 3.8.1`, `react-resizable-panels 4.11.2`, `eslint 10.4.1`. Build successful.
 
 ## Key Accounts (test)
 - Manager: `jimmythemugo@gmail.com` / `CALQULUS RMS@2026!`
