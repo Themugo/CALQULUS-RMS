@@ -9,6 +9,7 @@ import { useToast } from '@/shared/hooks/use-toast';
 import { Handshake, Shield, Eye, EyeOff } from 'lucide-react';
 import ForgotPasswordDialog from '@/features/auth/components/ForgotPasswordDialog';
 import { sanitizeAuthError } from '@/features/auth/lib/authFlow';
+import calqulusLogo from '@/assets/calqulusrms-logo.png';
 
 const AgencyAuth = () => {
   const navigate = useNavigate();
@@ -68,8 +69,12 @@ const AgencyAuth = () => {
       </div>
       <div className="w-full max-w-md space-y-6 relative z-10">
         <div className="text-center">
-          <div className="inline-flex items-center justify-center h-16 w-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-500/25 mb-4">
-            <Handshake className="h-8 w-8 text-white" />
+          <div className="inline-flex items-center justify-center bg-gradient-to-br from-emerald-100 to-teal-100 rounded-2xl p-4 shadow-lg border border-emerald-200 mb-4">
+            <img 
+              src={calqulusLogo} 
+              alt="CALQULUS RMS" 
+              className="h-12 w-auto"
+            />
           </div>
           <h1 className="text-2xl font-bold text-white">Agency Portal</h1>
           <p className="text-emerald-300 text-sm mt-1">Property agent access — manage landlords, tenants & operations</p>

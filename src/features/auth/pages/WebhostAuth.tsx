@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/sha
 import { useToast } from '@/shared/hooks/use-toast';
 import { Globe, Shield } from 'lucide-react';
 import { ensureSignedInRole, sanitizeAuthError } from '@/features/auth/lib/authFlow';
+import calqulusLogo from '@/assets/calqulusrms-logo.png';
 
 const isRecommendedWebhostHost = () => {
   const host = window.location.hostname;
@@ -90,8 +91,12 @@ const WebhostAuth = () => {
       <Card className="w-full max-w-md border-purple-800/50 bg-slate-900/80 backdrop-blur-sm shadow-2xl relative z-10">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
-            <div className="h-14 w-14 rounded-2xl bg-gradient-to-br from-purple-500 to-violet-600 flex items-center justify-center shadow-lg shadow-purple-500/25">
-              <Globe className="h-7 w-7 text-white" />
+            <div className="bg-gradient-to-br from-purple-100 to-violet-100 rounded-2xl p-4 shadow-lg border border-purple-200">
+              <img 
+                src={calqulusLogo} 
+                alt="CALQULUS RMS" 
+                className="h-12 w-auto"
+              />
             </div>
           </div>
           <CardTitle className="text-2xl font-bold text-white">Webhost Portal</CardTitle>
