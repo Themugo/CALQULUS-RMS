@@ -348,7 +348,14 @@ const WebhostContracts = () => {
           portalUrl: `${window.location.origin}/platform-billing`,
         },
       });
-    } catch {
+    } catch (error) {
+      logError('WebhostContracts', `Failed to send contract approval notification: ${error}`);
+      toast({ 
+        title: "Contract Approved", 
+        description: "The contract has been approved, but the notification email may not have been sent. Please notify the manager manually.",
+        variant: "warning" 
+      });
+      return;
     }
 
     toast({ title: "Contract Approved", description: "The contract has been approved and the manager has been notified." });
@@ -393,7 +400,13 @@ const WebhostContracts = () => {
           portalUrl: `${window.location.origin}/platform-billing`,
         },
       });
-    } catch {
+    } catch (error) {
+      logError('WebhostContracts', `Failed to send contract rejection notification: ${error}`);
+      toast({ 
+        title: "Contract Rejected", 
+        description: "The contract has been rejected, but the notification email may not have been sent. Please notify the manager manually.",
+        variant: "warning" 
+      });
     }
 
     if (error) {

@@ -312,6 +312,11 @@ export const DepositDeductionDialog = forwardRef<HTMLButtonElement, DepositDeduc
         },
       });
     } catch (error) {
+      toast({ 
+        title: "Failed to send refund notification", 
+        description: "The refund notification could not be sent. Please check the tenant's email manually.",
+        variant: "destructive" 
+      });
     }
   };
 

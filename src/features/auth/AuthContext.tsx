@@ -334,9 +334,21 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session); setUser(session?.user ?? null);
-      if (session?.user) fetchUserRole(session.user.id).then(setUserRole).catch(() => {}).finally(() => setLoading(false));
-      else setLoading(false);
-    }).catch(() => setLoading(false));
+      if (session?.user) {
+        fetchUserRole(session.user.id)
+          .then(setUserRole)
+          .catch((err) => {
+            logError('AuthContext', `Failed to fetch user role: ${err}`);
+            setUserRole(null);
+          })
+          .finally(() => setLoading(false));
+      } else {
+        setLoading(false);
+      }
+    }).catch((err) => {
+      logError('AuthContext', `Failed to get session: ${err}`);
+      setLoading(false);
+    });
 
     return () => { clearTimeout(timeout); subscription.unsubscribe(); };
     // `fetchUserRole` is memoised with useCallback. `loading` is intentionally
